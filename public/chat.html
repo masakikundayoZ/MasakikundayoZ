@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="/uv/uv.bundle.js"></script>
+    <script src="/uv/uv.config.js"></script>
+
+    <script>
+    if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+            navigator.serviceWorker.register("/uv/sw.js", {
+                scope: __uv$config.prefix,
+            });
+        });
+    }
+    </script>
+
+    <link rel="stylesheet" href="example.css">
+    <style>
+        /* --- Back Button Styling --- */
+        .back-nav-btn {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: rgba(30, 30, 30, 0.8);
+            color: white;
+            border: 1px solid #444;
+            padding: 10px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            z-index: 9999; /* Ensures it stays above the iframe */
+            text-decoration: none;
+            font-family: sans-serif;
+            font-weight: bold;
+            font-size: 14px;
+            backdrop-filter: blur(10px);
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        .back-nav-btn:hover {
+            background: #4285f4;
+            border-color: #4285f4;
+            transform: translateY(-2px);
+        }
+
+        /* Ensure the input area doesn't cover the button */
+        #urlInput { margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+    <a href="https://ajxanman-beep.github.io/Weblynx/" class="back-nav-btn">
+        <span>←</span> Back to Weblynx
+    </a>
+
+    <input type="text" id="urlInput" placeholder="Enter URL here">
+    <button id="searchButton">Search Text</button>
+
+    <iframe id="iframeWindow" class="iframeWindow"></iframe>
+
+    <script src="example.js"></script>
+</body>
+</html>
